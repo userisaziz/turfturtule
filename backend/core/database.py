@@ -1,4 +1,31 @@
-# TThe database have 4 building blocks
+from collections.abc import AsyncGenerator
 
-# 1. Delcartive Base
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.orm import DeclarativeBase
 
+from core.config import get_settings
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+settings = get_settings()
+
+engine = create_async_engine(
+    settings.database_url.get_secret_value(),
+    pool_pre_ping=True,
+    echo=settings.debug,
+)
+
+SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
+
+
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    async with SessionLocal() as session:
+        try:
+            yield session
+            await session.commit()
+        except BaseException:
+            await session.rollback()
+            raise
