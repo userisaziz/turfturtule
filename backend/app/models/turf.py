@@ -1,11 +1,11 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, Enum, ForeignKey, text
+from sqlalchemy import ARRAY, DateTime, Enum, ForeignKey, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.enums import  TurfStatus
-from core.database import Base
+from app.core.database import Base
+from app.models.enums import TurfSports, TurfStatus
 
 
 class Turf(Base):
@@ -17,5 +17,12 @@ class Turf(Base):
     city: Mapped[str]
     google_maps_url: Mapped[str | None]
     pincode: Mapped[str]
-    status: Mapped[TurfStatus]=mapped_column(Enum(TurfStatus, native_enum=False), default=TurfStatus.draft, server_default=text("'draft'"))
+    sports: Mapped[list[TurfSports]] = mapped_column(
+        ARRAY(Enum(TurfSports, native_enum=False)), nullable=False
+    )
+    status: Mapped[TurfStatus] = mapped_column(
+        Enum(TurfStatus, native_enum=False),
+        default=TurfStatus.draft,
+        server_default=text("'draft'"),
+    )
     created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True), server_default=func.now())

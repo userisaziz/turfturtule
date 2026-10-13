@@ -31,9 +31,9 @@ dev = [
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
-# Our top-level packages (flat layout: app/, core/, utils/ sit directly here)
+# Our top-level package (nested layout: core/ and models/ live inside app/)
 [tool.setuptools]
-packages = ["app", "core", "utils"]
+packages = ["app"]
 
 # Tool configs live in the SAME manifest — no more scattered ruff.toml / pytest.ini
 [tool.ruff]
