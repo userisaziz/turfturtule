@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import ARRAY, DateTime, Enum, ForeignKey, func, text
+from sqlalchemy import ARRAY, DateTime, Enum, ForeignKey, func, String, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -14,6 +14,9 @@ class Turf(Base):
     owner_id: Mapped[uuid.UUID]=mapped_column(ForeignKey("users.id"), nullable=False)
     name: Mapped[str]
     description: Mapped[str | None]
+    photos: Mapped[list[str]] = mapped_column(
+        ARRAY(String(255)), nullable=False
+    )
     city: Mapped[str]
     google_maps_url: Mapped[str | None]
     pincode: Mapped[str]

@@ -10,6 +10,7 @@ from app.core.config import get_settings
 from app.core.database import get_db
 
 
+
 def create_app()-> FastAPI:
     settings = get_settings()
     app = FastAPI(
