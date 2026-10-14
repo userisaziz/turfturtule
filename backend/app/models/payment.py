@@ -5,7 +5,7 @@ from sqlalchemy import DateTime, Enum, ForeignKey, String, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
-from app.models.enums import PaymentMethod, PaymentStatus
+from app.utils.enums import PaymentMethod, PaymentStatus
 
 
 class Payment(Base):

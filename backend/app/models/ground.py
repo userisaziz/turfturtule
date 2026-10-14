@@ -4,7 +4,7 @@ from sqlalchemy import ARRAY, Enum, ForeignKey, String, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
-from app.models.enums import TurfSports
+from app.utils.enums import TurfSports
 
 
 class Ground(Base):

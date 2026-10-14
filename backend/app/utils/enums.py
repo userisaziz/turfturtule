@@ -14,14 +14,17 @@ class TurfSports(str, enum.Enum):
     tennis = "tennis"
     volleyball = "volleyball"
 
+
 class TimeOfDay(str, enum.Enum):
     day = "day"
     night = "night"
+
 
 class Status(str, enum.Enum):
     active = "active"
     pending = "pending"
     rejected = "rejected"
+
 
 class BookingStatus(str, enum.Enum):
     pending = "pending"
@@ -35,8 +38,14 @@ class PaymentMethod(str, enum.Enum):
     card = "card"
     cash = "cash"
 
+
 class PaymentStatus(str, enum.Enum):
     initiated = "initiated"
     success = "success"
     failed = "failed"
     refunded = "refunded"
+
+class UserRole(str, enum.Enum):
+    customer = "customer"
+    owner = "owner"
+    admin = "admin"

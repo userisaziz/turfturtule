@@ -1,11 +1,11 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import ARRAY, DateTime, Enum, ForeignKey, func, String, text
+from sqlalchemy import ARRAY, DateTime, Enum, ForeignKey, String, func, text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
-from app.models.enums import TurfSports, TurfStatus
+from app.utils.enums import TurfSports, TurfStatus
 
 
 class Turf(Base):
